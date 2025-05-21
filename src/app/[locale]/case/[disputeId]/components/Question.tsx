@@ -86,7 +86,17 @@ const Question: React.FC<IQuestion> = async ({ disputeId }) => {
           langDir === "rtl" && "divide-x-reverse",
         )}
       >
-        {disputeDetails.answers.slice(1).map((answer) => (
+        {(disputeId === "51"
+          ? [
+              {
+                id: "0x0",
+                title: "Si.",
+                description: "Si compensar al usuario.",
+              },
+              ...disputeDetails.answers.slice(1),
+            ]
+          : disputeDetails.answers.slice(1)
+        ).map((answer) => (
           <div key={answer.title}>
             <div
               className={clsx(
