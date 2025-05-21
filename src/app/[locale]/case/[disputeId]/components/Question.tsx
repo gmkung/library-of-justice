@@ -86,7 +86,7 @@ const Question: React.FC<IQuestion> = async ({ disputeId }) => {
           langDir === "rtl" && "divide-x-reverse",
         )}
       >
-        {disputeDetails.answers.map((answer) => (
+        {disputeDetails.answers.slice(1).map((answer) => (
           <div key={answer.title}>
             <div
               className={clsx(
