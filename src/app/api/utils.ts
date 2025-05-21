@@ -9,6 +9,7 @@ export const getClient = (endpoint: string) => {
     client = new Client({
       url: endpoint,
       exchanges: [cacheExchange, fetchExchange],
+      requestPolicy: "network-only",
     });
     clients.set(endpoint, client);
   }
