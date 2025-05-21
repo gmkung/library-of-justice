@@ -38,14 +38,11 @@ type IRulingOptions = Record<string, DisputeDetails["answers"][number]>;
 export const getRulingOptions = (
   answers: DisputeDetails["answers"],
 ): IRulingOptions =>
-  answers.reduce(
-    (acc: IRulingOptions, answer) => {
-      const answerId = answer.id;
-      if (answerId) acc[answerId] = answer;
-      return acc;
-    },
-    { "0x0": { title: "Refuse", description: "Refuse to arbitrate" } },
-  );
+  answers.reduce((acc: IRulingOptions, answer) => {
+    const answerId = answer.id;
+    if (answerId) acc[answerId] = answer;
+    return acc;
+  }, {});
 
 export const processCurrentPeriod = (
   currentPeriod: number,
