@@ -51,24 +51,26 @@ const Evidence: React.FC<IEvidence> = async ({ evidenceGroupId }) => {
             >
               {t("from", { user: shortenAddress(evidence.sender.id) })}
             </span>
-            <Link
-              href={ipfsUrl(evidence.fileURI)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="flex gap-2 items-center">
-                <Image
-                  src="/attachment.svg"
-                  alt="attachment"
-                  width="24"
-                  height="24"
-                  className="inline w-4"
-                />
-                <span className="text-base text-primary-blue">
-                  {t("attachment")}
-                </span>
-              </div>
-            </Link>
+            {evidence.fileURI && evidence.fileURI.length > 0 && (
+              <Link
+                href={ipfsUrl(evidence.fileURI)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="flex gap-2 items-center">
+                  <Image
+                    src="/attachment.svg"
+                    alt="attachment"
+                    width="24"
+                    height="24"
+                    className="inline w-4"
+                  />
+                  <span className="text-base text-primary-blue">
+                    {t("attachment")}
+                  </span>
+                </div>
+              </Link>
+            )}
           </div>
         </div>
       ))}
