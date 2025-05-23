@@ -27,10 +27,14 @@ const Evidence: React.FC<IEvidence> = async ({ evidenceGroupId }) => {
   return (
     <div className="w-full px-4 space-y-6">
       <h3 className="text-primary-text text-lg text-center">{t("title")}</h3>
-      {data.evidences.map((evidence, i) => (
-        <div key={evidence.evidenceIndex} className="w-full">
-          <h4
-            className="text-base md:text-md text-primary-text font-semibold"
+      {data.evidences.map((evidence, i) => {
+        const hasFileURI = evidence.fileURI && evidence.fileURI.length > 0;
+        const isIpfsPath = hasFileURI && evidence.fileURI.startsWith("/ipfs/");
+
+        return (
+          <div key={evidence.evidenceIndex} className="w-full">
+            <h4
+              className="text-base md:text-md text-primary-text font-semibold"
             dir="auto"
           >
             #{i + 1} {evidence.name}
@@ -51,7 +55,7 @@ const Evidence: React.FC<IEvidence> = async ({ evidenceGroupId }) => {
             >
               {t("from", { user: shortenAddress(evidence.sender.id) })}
             </span>
-            {evidence.fileURI && evidence.fileURI.length > 0 && (
+            {isIpfsPath && (
               <Link
                 href={ipfsUrl(evidence.fileURI)}
                 target="_blank"
@@ -73,7 +77,8 @@ const Evidence: React.FC<IEvidence> = async ({ evidenceGroupId }) => {
             )}
           </div>
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
