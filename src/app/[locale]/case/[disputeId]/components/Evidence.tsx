@@ -35,48 +35,48 @@ const Evidence: React.FC<IEvidence> = async ({ evidenceGroupId }) => {
           <div key={evidence.evidenceIndex} className="w-full">
             <h4
               className="text-base md:text-md text-primary-text font-semibold"
-            dir="auto"
-          >
-            #{i + 1} {evidence.name}
-          </h4>
-          <Separator className="bg-stroke my-1" />
-          <p className="text-primary-text text-base pl-2" dir="auto">
-            {evidence.description}
-          </p>
-          <div
-            className={
-              "mt-1 bg-stroke flex justify-between items-center px-2 py-1"
-            }
-          >
-            <span
+              dir="auto"
+            >
+              #{i + 1} {evidence.name}
+            </h4>
+            <Separator className="bg-stroke my-1" />
+            <p className="text-primary-text text-base pl-2" dir="auto">
+              {evidence.description}
+            </p>
+            <div
               className={
-                "text-xs md:text-base align-middle text-secondary-text"
+                "mt-1 bg-stroke flex justify-between items-center px-2 py-1"
               }
             >
-              {t("from", { user: shortenAddress(evidence.sender.id) })}
-            </span>
-            {isIpfsPath && (
-              <Link
-                href={ipfsUrl(evidence.fileURI)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <span
+                className={
+                  "text-xs md:text-base align-middle text-secondary-text"
+                }
               >
-                <div className="flex gap-2 items-center">
-                  <Image
-                    src="/attachment.svg"
-                    alt="attachment"
-                    width="24"
-                    height="24"
-                    className="inline w-4"
-                  />
-                  <span className="text-base text-primary-blue">
-                    {t("attachment")}
-                  </span>
-                </div>
-              </Link>
-            )}
+                {t("from", { user: shortenAddress(evidence.sender.id) })}
+              </span>
+              {isIpfsPath && (
+                <Link
+                  href={ipfsUrl(evidence.fileURI)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="flex gap-2 items-center">
+                    <Image
+                      src="/attachment.svg"
+                      alt="attachment"
+                      width="24"
+                      height="24"
+                      className="inline w-4"
+                    />
+                    <span className="text-base text-primary-blue">
+                      {t("attachment")}
+                    </span>
+                  </div>
+                </Link>
+              )}
+            </div>
           </div>
-        </div>
         );
       })}
     </div>
