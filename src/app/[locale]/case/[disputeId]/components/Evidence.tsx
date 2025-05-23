@@ -27,51 +27,58 @@ const Evidence: React.FC<IEvidence> = async ({ evidenceGroupId }) => {
   return (
     <div className="w-full px-4 space-y-6">
       <h3 className="text-primary-text text-lg text-center">{t("title")}</h3>
-      {data.evidences.map((evidence, i) => (
-        <div key={evidence.evidenceIndex} className="w-full">
-          <h4
-            className="text-base md:text-md text-primary-text font-semibold"
-            dir="auto"
-          >
-            #{i + 1} {evidence.name}
-          </h4>
-          <Separator className="bg-stroke my-1" />
-          <p className="text-primary-text text-base pl-2" dir="auto">
-            {evidence.description}
-          </p>
-          <div
-            className={
-              "mt-1 bg-stroke flex justify-between items-center px-2 py-1"
-            }
-          >
-            <span
+      {data.evidences.map((evidence, i) => {
+        const hasFileURI = evidence.fileURI && evidence.fileURI.length > 0;
+        const isIpfsPath = hasFileURI && evidence.fileURI.startsWith("/ipfs/");
+
+        return (
+          <div key={evidence.evidenceIndex} className="w-full">
+            <h4
+              className="text-base md:text-md text-primary-text font-semibold"
+              dir="auto"
+            >
+              #{i + 1} {evidence.name}
+            </h4>
+            <Separator className="bg-stroke my-1" />
+            <p className="text-primary-text text-base pl-2" dir="auto">
+              {evidence.description}
+            </p>
+            <div
               className={
-                "text-xs md:text-base align-middle text-secondary-text"
+                "mt-1 bg-stroke flex justify-between items-center px-2 py-1"
               }
             >
-              {t("from", { user: shortenAddress(evidence.sender.id) })}
-            </span>
-            <Link
-              href={ipfsUrl(evidence.fileURI)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="flex gap-2 items-center">
-                <Image
-                  src="/attachment.svg"
-                  alt="attachment"
-                  width="24"
-                  height="24"
-                  className="inline w-4"
-                />
-                <span className="text-base text-primary-blue">
-                  {t("attachment")}
-                </span>
-              </div>
-            </Link>
+              <span
+                className={
+                  "text-xs md:text-base align-middle text-secondary-text"
+                }
+              >
+                {t("from", { user: shortenAddress(evidence.sender.id) })}
+              </span>
+              {isIpfsPath && (
+                <Link
+                  href={ipfsUrl(evidence.fileURI)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="flex gap-2 items-center">
+                    <Image
+                      src="/attachment.svg"
+                      alt="attachment"
+                      width="24"
+                      height="24"
+                      className="inline w-4"
+                    />
+                    <span className="text-base text-primary-blue">
+                      {t("attachment")}
+                    </span>
+                  </div>
+                </Link>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
