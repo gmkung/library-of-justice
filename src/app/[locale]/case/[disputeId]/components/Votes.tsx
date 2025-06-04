@@ -24,7 +24,7 @@ type IJurorData = Record<
 >;
 
 const Votes: React.FC<IVotes> = async ({ disputeId }) => {
-  const headersList = headers();
+  const headersList = await headers();
   const host = headersList.get("host");
   const protocol = headersList.get("x-forwarded-proto");
 
