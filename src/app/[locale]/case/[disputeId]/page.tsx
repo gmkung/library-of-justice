@@ -14,13 +14,15 @@ import Votes from "./components/Votes";
 import { Periods } from "@/app/utils";
 
 interface ICaseDetails {
-  params: { disputeId: `${number}` };
+  params: Promise<{ disputeId: `${number}` }>;
 }
 
-const CaseDetails: React.FC<ICaseDetails> = async ({
-  params: { disputeId },
-}) => {
-  const headersList = headers();
+const CaseDetails: React.FC<ICaseDetails> = async (props) => {
+  const params = await props.params;
+
+  const { disputeId } = params;
+
+  const headersList = await headers();
   const host = headersList.get("host");
   const protocol = headersList.get("x-forwarded-proto");
 
