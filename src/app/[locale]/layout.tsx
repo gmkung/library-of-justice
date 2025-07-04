@@ -37,25 +37,25 @@ export default async function RootLayout(
   return (
     <html lang={locale}>
       <body
-        className={clsx(openSans.className, "antialiased bg-white-background")}
+        className={clsx(openSans.className, "antialiased bg-castle-dark font-sci-fi")}
         dir={langDir}
       >
         <NextIntlClientProvider {...{ messages }}>
           <div
             className={clsx(
-              "bg-white-background min-h-screen",
+              "bg-castle-gradient castle-texture min-h-screen",
               "p-4 flex flex-col",
             )}
           >
             <div
               className={clsx(
-                "bg-gradient-to-r from-secondary-purple to-primary-purple",
+                "bg-neon-gradient shadow-purple-glow-lg rounded-lg",
                 "flex-grow p-1.5 flex flex-col",
               )}
             >
-              <div className="bg-white-background flex-grow p-4 flex flex-col items-center">
+              <div className="bg-castle-dark shadow-castle-depth rounded-lg flex-grow p-6 flex flex-col items-center border border-stroke">
                 <Navbar {...{ locale }} />
-                <main className="flex-grow flex flex-col">{children}</main>
+                <main className="flex-grow flex flex-col w-full">{children}</main>
               </div>
             </div>
           </div>

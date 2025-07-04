@@ -33,22 +33,24 @@ const CaseDetails: React.FC<ICaseDetails> = async (props) => {
   const t = await getTranslations("case");
 
   return (
-    <div className="flex flex-col items-center my-32 px-0 md:px-10 max-w-[1300px]">
-      <h2 className="text-primary-text text-xl font-bold">
-        {t("title")}
-        <span className="inline text-primary-blue"> #{disputeId} </span>
-      </h2>
-      <Separator className="bg-primary-purple w-3/4 my-8" />
-      <Question {...{ disputeId }} />
-      <Separator className="bg-primary-purple w-3/4 my-8" />
-      <Period
-        currentPeriod={Periods[data.period]}
-        currentRound={parseInt(data.currentRoundIndex)}
-      />
-      <Separator className="bg-primary-purple w-3/4 my-8" />
-      <Evidence evidenceGroupId={data.externalDisputeId} />
-      <Separator className="bg-primary-purple w-3/4 my-8" />
-      <Votes {...{ disputeId }} />
+    <div className="flex flex-col items-center my-32 px-0 md:px-10 max-w-[1300px] w-full">
+      <div className="bg-castle-stone border border-stroke border-glow rounded-lg p-8 shadow-castle-depth castle-texture w-full">
+        <h2 className="text-primary-text text-xl font-bold font-gothic text-glow-strong text-center">
+          {t("title")}
+          <span className="inline text-neon-purple font-sci-fi text-glow"> #{disputeId} </span>
+        </h2>
+        <Separator className="bg-neon-gradient w-3/4 my-8 mx-auto h-0.5 shadow-purple-glow" />
+        <Question {...{ disputeId }} />
+        <Separator className="bg-neon-gradient w-3/4 my-8 mx-auto h-0.5 shadow-purple-glow" />
+        <Period
+          currentPeriod={Periods[data.period]}
+          currentRound={parseInt(data.currentRoundIndex)}
+        />
+        <Separator className="bg-neon-gradient w-3/4 my-8 mx-auto h-0.5 shadow-purple-glow" />
+        <Evidence evidenceGroupId={data.externalDisputeId} />
+        <Separator className="bg-neon-gradient w-3/4 my-8 mx-auto h-0.5 shadow-purple-glow" />
+        <Votes {...{ disputeId }} />
+      </div>
     </div>
   );
 };
